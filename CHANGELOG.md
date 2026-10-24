@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.3.1 - 2026-10-24
+
+### Changed
+
+- The npm page now links to the GitHub repository, issue tracker and GitHub Sponsors page. `npm fund` shows the sponsor link.
+- The package description and keywords now mention the security tools, so npm search finds them.
+
 ## 0.3.0 - 2026-10-24
 
 ### Added

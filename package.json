@@ -1,7 +1,7 @@
 {
   "name": "github-repo-scout-mcp",
   "version": "0.3.0",
-  "description": "Read-only MCP server for discovering and evaluating GitHub repositories: multi-topic search, topic discovery, repo health scores, comparisons and similar-repo search. Works without a token.",
+  "description": "Read-only MCP server for discovering and evaluating GitHub repositories: multi-topic search, repo health scores, comparisons, dependency vulnerability audits and supply chain risk checks. Works without a token.",
   "type": "module",
   "main": "dist/index.js",
   "bin": {
@@ -30,10 +30,27 @@
     "topics",
     "repo-health",
     "claude",
-    "ai-agent"
+    "ai-agent",
+    "security",
+    "vulnerabilities",
+    "supply-chain",
+    "dependency-audit",
+    "openssf-scorecard"
   ],
   "author": "Ashutosh Kodavade",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ashutosh6500/github-repo-scout-mcp.git"
+  },
+  "homepage": "https://github.com/ashutosh6500/github-repo-scout-mcp#readme",
+  "bugs": {
+    "url": "https://github.com/ashutosh6500/github-repo-scout-mcp/issues"
+  },
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/ashutosh6500"
+  },
   "engines": {
     "node": "^22.23.4 || ^24.22.1 || >=26.12.1"
   },

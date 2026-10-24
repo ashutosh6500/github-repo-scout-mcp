@@ -157,6 +157,10 @@ npm run smoke     # calls each tool against the real GitHub API (about 20 reques
 
 Requires Node.js 22.23.4, 24.22.1 or 26.12.1 or newer. These releases (October 2026) stop trusting the compromised eMudhra certificates. Older Node versions could let someone intercept your traffic to GitHub, including your token. Node 18 and 20 are end-of-life and will not get the fix. On an older version the server still runs but prints a warning at startup.
 
+## Support
+
+If this server saves you time, you can [sponsor its development on GitHub](https://github.com/sponsors/ashutosh6500). Bug reports and feature requests are welcome in [issues](https://github.com/ashutosh6500/github-repo-scout-mcp/issues).
+
 ## License
 
 MIT
