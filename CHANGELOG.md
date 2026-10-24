@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.2 - 2026-10-24
+
+### Fixed
+
+- `github-repo-scout-mcp --version` printed the startup line and then seemed to hang, because every run started the server. `--version` and `--help` now print and exit. Starting the server by hand in a terminal now says it is waiting for an MCP client and how to exit.
+
 ## 0.3.1 - 2026-10-24
 
 ### Changed

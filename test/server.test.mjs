@@ -1,5 +1,7 @@
 import { test, after } from "node:test";
 import assert from "node:assert/strict";
+import { execFileSync } from "node:child_process";
+import { readFileSync } from "node:fs";
 import { createServer } from "node:http";
 import { fileURLToPath } from "node:url";
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
@@ -96,6 +98,16 @@ test("every tool works in mock mode", async () => {
 
   const issues = await call(client, "list_issues", repo);
   assert.ok(!issues.text.includes("#7"), "list_issues must exclude pull requests");
+});
+
+test("--version and --help print and exit instead of starting the server", () => {
+  const { version } = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8"));
+  for (const flag of ["--version", "-v"]) {
+    assert.equal(execFileSync(process.execPath, [SERVER, flag], { encoding: "utf8", timeout: 5000 }).trim(), version);
+  }
+  const help = execFileSync(process.execPath, [SERVER, "--help"], { encoding: "utf8", timeout: 5000 });
+  assert.match(help, /claude mcp add github-repo-scout/);
+  assert.match(help, /GITHUB_TOKEN/);
 });
 
 test("reports clear errors", async () => {

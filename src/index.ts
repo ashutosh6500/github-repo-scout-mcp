@@ -25,10 +25,38 @@ registerRepoTools(server);
 registerInsightTools(server);
 registerSecurityTools(server);
 
+const HELP = `github-repo-scout-mcp v${VERSION}
+
+An MCP server: AI clients such as Claude start it and talk to it over stdin and stdout.
+
+Add it to Claude Code:
+  claude mcp add github-repo-scout -- npx -y github-repo-scout-mcp
+
+Environment variables:
+  GITHUB_TOKEN     Optional token: higher rate limits, and enables search_code
+  GITHUB_API_URL   API URL for GitHub Enterprise Server
+  MOCK=true        Sample data with no network calls
+
+Options:
+  -v, --version    Print the version
+  -h, --help       Print this help`;
+
 async function main(): Promise<void> {
+  const arg = process.argv[2];
+  if (arg === "--version" || arg === "-v") {
+    console.log(VERSION);
+    return;
+  }
+  if (arg === "--help" || arg === "-h") {
+    console.log(HELP);
+    return;
+  }
+
   await server.connect(new StdioServerTransport());
   const mode = isMock ? "mock mode (no network calls)" : token ? "authenticated with GitHub token" : "unauthenticated (set GITHUB_TOKEN for higher limits)";
   console.error(`github-repo-scout-mcp v${VERSION} running on stdio, ${mode}`);
+  // Started by hand in a terminal rather than by an MCP client.
+  if (process.stdin.isTTY) console.error("Waiting for an MCP client on stdin. Press Ctrl+C to exit, or run with --help.");
   if (!isMock && !hasPatchedTrustStore()) {
     console.error(
       `Warning: Node.js ${process.version} still trusts the compromised eMudhra certificates, so traffic to GitHub` +
